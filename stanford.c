@@ -60,3 +60,20 @@ void destroy_list(List *list)
 	list->size=0;
 	memset(list, 0, sizeof(List));
 }
+
+int pop(List *list)
+{
+	if(list->size == 0)
+	{
+		printf("Cannot pop from an empty list !");
+		exit(1);
+	}
+	int data = list->head->data;
+	Node *temp = list->head;
+	list->head = list->head->next;
+	free(temp);
+	list->size--;
+
+	return data;
+
+}
