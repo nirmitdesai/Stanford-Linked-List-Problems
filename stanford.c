@@ -293,7 +293,26 @@ void sortedMerge(List *list , List *list_a , List *list_b)
 }
 
 
-void
+void sortedIntersect(List *list , List *list_a , List *list_b)
+{
+	Node *aHead = list_a->head;
+	Node *bHead = list_b->head;
+		
+	while( aHead !=NULL && bHead!= NULL)
+	{
+		if(aHead->data == bHead->data)
+		{
+			addAtTail(list,aHead->data);
+			aHead = aHead->next;
+			bHead = bHead->next;
+		}
+		else if ( aHead->data < bHead->data)
+			aHead = aHead->next;
+		else
+			bHead = bHead->next;
+	}
+
+}
 
 
 
