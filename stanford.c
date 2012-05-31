@@ -223,6 +223,37 @@ void moveNode(List *list, List *list1)
 	list->head = temp;
 	list->size++;
 	list1->size--;
-
 }
+
+void alternatingSplit(List *list, List *list_a , List *list_b)
+{
+	int i, k = list->size;
+	Node *temp = list->head;
+	
+	for(i=1;i<=(int)ceil(k/2.0);i++)
+	{
+		moveNode(list_a,list);
+		
+		if(list->head!=NULL)
+			moveNode(list_b,list);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
