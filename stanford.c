@@ -114,3 +114,22 @@ int insertAtAnyPosition(List *list , int data,int count)
 	return 0;
 
 }
+
+void sortedInsert(List *list , Node *newNode)
+{
+	Node *temp;
+	
+	for(temp = list->head;temp->next != NULL && temp->next->data <= newNode->data; temp = temp->next)	
+		;
+	
+	newNode->next = temp->next;
+	temp->next = newNode;	
+
+	if(newNode->next == NULL)
+		list->tail = newNode;
+
+	list->size++;
+
+
+	
+}
