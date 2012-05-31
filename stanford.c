@@ -1,6 +1,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<stdio.h>
+#include<math.h>
 #include "list.h"
 
 int count_int(List *list , int searchFor)
@@ -155,7 +156,31 @@ void append(List *list , List *list_a)
 	memset(list_a, 0, sizeof(List));
 }
 
+void frontBackSplit(List *list , List *list1)
+{
+	
+	if(list->size <2)
+	{
+		printf("Cannot split list of size 0 or 1!");
+		exit(1);
+	}	
+	
+	int nosInList = (int)ceil(list->size/2.0);
+	int i;
+	Node *temp = list->head;
+	
+	for(i=1;i<nosInList;i++,temp=temp->next)
+		;
 
+	list1->head = temp->next;
+	list1->tail = list->tail;
+	list->tail = temp;
+	list->tail->next = NULL;
+	list1->size = list->size - nosInList;
+	list->size = nosInList;
+
+	
+}
 
 
 
