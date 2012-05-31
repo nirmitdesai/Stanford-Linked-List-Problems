@@ -37,3 +37,26 @@ int getNth(List *list , int index)
 		return temp->data;
 	}
 }
+
+void destroy_list(List *list)
+{
+	Node *temp = list->head;
+	Node *prev = list->head;
+
+	if(temp==NULL)
+	{
+		printf("cannot destroy empty list !! ");
+		return;
+	}
+	
+	while(temp!=NULL)
+	{
+		
+		temp=temp->next;
+		free(prev);
+		prev= temp;
+	}
+	list->head = list->tail = NULL;
+	list->size=0;
+	memset(list, 0, sizeof(List));
+}
