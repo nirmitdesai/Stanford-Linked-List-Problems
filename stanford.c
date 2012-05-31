@@ -14,3 +14,26 @@ int count_int(List *list , int searchFor)
 
 	return count;
 }
+
+int getNth(List *list , int index)
+{
+	if(index < 0 )
+	{
+		printf("You cannot specify a negative index\n");
+		exit(1);
+	}
+	else if(index>list->size-1)
+	{
+		printf("Index specified is out of range\n");
+		exit(1);
+	}
+	else
+	{
+		int i;
+		Node *temp = list->head;
+		for(i=0;i!=index;i++)
+			temp=temp->next;
+
+		return temp->data;
+	}
+}
