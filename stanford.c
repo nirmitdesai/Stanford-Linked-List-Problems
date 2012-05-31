@@ -65,9 +65,10 @@ int pop(List *list)
 {
 	if(list->size == 0)
 	{
-		printf("Cannot pop from an empty list !");
+		printf("Cannot pop from an empty list !\n");
 		exit(1);
 	}
+
 	int data = list->head->data;
 	Node *temp = list->head;
 	list->head = list->head->next;
@@ -75,5 +76,41 @@ int pop(List *list)
 	list->size--;
 
 	return data;
+
+}
+
+int insertAtAnyPosition(List *list , int data,int count)
+{
+	Node *temp = list->head;
+	Node *prev = list->head;
+	Node *newNode;
+	
+	if(count == 0) //insertion at 0th position a.k.a head , 
+		addAtHead(list,data);	
+	else if(count == list->size) 
+		addAtTail(list,data);
+	else
+	{
+		if (  (newNode = (Node *)malloc(sizeof(Node))) == NULL  )	
+		{
+			perror("malloc memory error!");
+			return -1;
+		}
+		newNode->data = data;
+		while(count)
+		{
+			temp = temp->next;
+			count=count-1;
+		}
+		
+		while(prev->next!=temp)
+			prev = prev->next;
+		
+		prev->next = newNode;
+		newNode->next = temp;
+		
+	}
+	list->size++;
+	return 0;
 
 }
