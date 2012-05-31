@@ -129,7 +129,33 @@ void sortedInsert(List *list , Node *newNode)
 		list->tail = newNode;
 
 	list->size++;
-
-
-	
 }
+
+void append(List *list , List *list_a)
+{
+	if(list_a->size == 0)
+	{
+		printf("The list to be appened is empty so this is same as original list!\n");
+		memset(list_a, 0, sizeof(List));
+		return;
+	}
+	if(list->size==0)
+	{
+		list->head = list_a->head;
+	}
+	else
+	{
+		list->tail->next = list_a->head;
+	}
+	
+	list->size = list_a->size + list->size;
+	list->tail = list_a->tail;
+	list_a->head = list_a->tail = NULL;
+	list_a->size=0;
+	memset(list_a, 0, sizeof(List));
+}
+
+
+
+
+
