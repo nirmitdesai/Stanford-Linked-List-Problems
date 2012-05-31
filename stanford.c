@@ -240,7 +240,37 @@ void alternatingSplit(List *list, List *list_a , List *list_b)
 }
 
 
+void shuffleMerge(List *list, List *list_a , List *list_b)
+{
+	Node *aHead = list_a->head;
+	Node *bHead = list_b->head;
+	Node *temp;
+	list->head = list_a->head;
 
+	if(list_a->size > list_b->size)
+		list->tail = list_a->tail;
+	else
+		list->tail = list_b->tail;
+
+
+	list->size = list_a->size + list_b->size;
+	while(aHead != NULL && bHead !=NULL)
+	{
+		temp=aHead;
+		aHead = aHead->next;
+		temp->next = bHead;
+		
+		temp = bHead;
+		bHead = bHead->next;
+		temp->next = aHead;
+	}
+
+	list_a->head = list_a->tail = NULL;
+	list_b->head = list_b->tail = NULL;
+	list_a->size = list_b->size = 0;
+	
+
+}
 
 
 
