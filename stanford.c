@@ -272,7 +272,25 @@ void shuffleMerge(List *list, List *list_a , List *list_b)
 
 }
 
+void sortedMerge(List *list , List *list_a , List *list_b)
+{
+	
 
+	while(list_a->head != NULL && list_b->head != NULL)
+	{
+		if(list_a->head->data 	<= list_b->head->data)
+			moveNode(list,list_a);
+		else
+			moveNode(list,list_b);		
+	}
+	while(list_a->head != NULL)
+		moveNode(list,list_a);
+	while(list_b->head != NULL)
+		moveNode(list,list_b);
+
+	
+	
+}
 
 
 
