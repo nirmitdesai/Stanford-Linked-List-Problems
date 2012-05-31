@@ -182,5 +182,32 @@ void frontBackSplit(List *list , List *list1)
 	
 }
 
+void removeDuplicates(List *list)
+{
+
+	if(list->size==0 || list->size==1)
+	{
+		printf("Can't remove duplicates from list of size 0 or 1!\n");
+		exit(1);
+	}
+	Node *temp = list->head;
+	while(temp->next!=NULL)
+	{
+		if(temp->data == temp->next->data)
+		{
+			Node *newNext = temp->next->next;
+			free(temp->next);
+			list->size--;
+			temp->next = newNext;
+			if(temp->next == NULL)
+				list->tail = temp;
+
+			temp = temp->next;		
+		}
+		else
+			temp = temp->next;
+	}
+}
+
 
 
