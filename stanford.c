@@ -209,5 +209,20 @@ void removeDuplicates(List *list)
 	}
 }
 
+void moveNode(List *list, List *list1)
+{
+	if(list1->size == 0 )
+	{
+		printf("Can't call moveNode when size of source list is 0!\n");
+		exit(1);
+	}
+	
+	Node *temp = list1->head;
+	list1->head = list1->head->next;	
+	temp->next = list->head;
+	list->head = temp;
+	list->size++;
+	list1->size--;
 
+}
 
